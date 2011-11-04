@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9024A0AE-E5B7-47E8-8673-66E26CBB022B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HeadlessTestingDemo</RootNamespace>
     <AssemblyName>HeadlessTestingDemo</AssemblyName>
@@ -33,9 +33,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Noesis.Javascript">
-      <HintPath>Vendor\Noesis.Javascript.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks">
+      <HintPath>packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,18 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.txt" />
-    <Compile Include="TestRunner.cs" />
+    <Compile Include="HeadlessTestingDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Jasmine\env.therubyracer.js" />
-    <Content Include="Jasmine\jasmine.js" />
-    <Content Include="Jasmine\window.js" />
-    <Content Include="Scripts\jquery-1.4.2.js" />
-    <Content Include="Scripts\Roman.js" />
-    <Content Include="Specs\RomanSpec.js" />
-    <Content Include="Specs\SpecHelper.js" />
+    <ProjectReference Include="..\Noesis.Javascript.Headless\Noesis.Javascript.Headless.csproj">
+      <Project>{8907A3D2-FEDC-40AA-9788-15DAC0A0D2A7}</Project>
+      <Name>Noesis.Javascript.Headless</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Roman.js" />
+    <EmbeddedResource Include="Specs\RomanSpec.js" />
+    <EmbeddedResource Include="Specs\SpecHelper.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
