@@ -1,0 +1,3 @@
+[submodule "Noesis.Javascript.Headless"]
+	path = Noesis.Javascript.Headless
+	url = git@github.com:leviwilson/Noesis.Javascript.Headless.git
